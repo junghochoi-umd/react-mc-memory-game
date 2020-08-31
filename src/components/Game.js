@@ -9,19 +9,44 @@ export class Game extends Component {
         this.state = {
             currentScore: 0,
             personalBest: 0,
-            blocks: blocks
-            
+            blocks: blocks   
         }
     }
-    
-    shuffle = () => {
+    handleClick = (clickedBefore) =>{
+        console.log(clickedBefore);
+        if (clickedBefore){
+            this.updateGame()
+            alert("You Lost")
+            
+        } else {
+            this.updateGame()
+        }
+    }
+    updateGame = () => {
+        const newArray = this.shuffle(this.state.blocks);
+        this.setState((prevState) => {
+            return {
+                currentScore: prevState.currentScore+1,
+                personalBest: prevState.personalBest,
+                blocks: newArray
+            }
 
+        })
+    }
+    shuffle = a => {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
     }
     render() {
-
+        
+        console.log("render method called")
         let blockCards = blocks.map((obj)=>{
+            
             return (
-                <Card key={obj.id} image={obj.image} name={obj.name}/>
+                <Card key={obj.id} image={obj.image} name={obj.name} handleClick={this.handleClick}/>
             )
         });
 
