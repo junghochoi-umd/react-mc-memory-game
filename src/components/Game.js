@@ -12,15 +12,21 @@ export class Game extends Component {
             blocks: blocks   
         }
     }
-    handleClick = (clickedBefore) =>{
-        console.log(clickedBefore);
-        if (clickedBefore){
-            this.updateGame()
-            alert("You Lost")
+    handleClick = (id) =>{
+
+        this.state.blocks.forEach( obj => {
+            if (id === obj.id &&   obj.clicked === false){
+                obj.clicked = true;
+            }
+        })
+        // console.log(clickedBefore);
+        // if (clickedBefore){
+        //     this.updateGame()
+        //     alert("You Lost")
             
-        } else {
-            this.updateGame()
-        }
+        // } else {
+        //     this.updateGame()
+        // }
     }
     updateGame = () => {
         const newArray = this.shuffle(this.state.blocks);
@@ -42,13 +48,15 @@ export class Game extends Component {
     }
     render() {
         
-        console.log("render method called")
+        console.log("RenderMethod Called")
         let blockCards = blocks.map((obj)=>{
             
             return (
                 <Card key={obj.id} image={obj.image} name={obj.name} handleClick={this.handleClick}/>
             )
         });
+
+        // blockCards.forEach( obj => console.log(obj))
 
         return (
             

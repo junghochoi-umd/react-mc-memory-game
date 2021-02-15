@@ -22,7 +22,7 @@ export class Header extends Component {
     render() {
         return (
             <header>
-                <div className="logo"><h1>Memory Game</h1></div>
+                <div className="logo"><h1>Minecraft Memory Game</h1></div>
                 <button className='instructions btn btn-success' onClick={this.toggleModal}>How to play</button>
             
                 {

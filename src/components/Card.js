@@ -5,20 +5,9 @@ export class Card extends Component {
     constructor(props) {
         super(props)
     
-        this.state = {
-             clicked: false
-        }
+
     }
 
-    cardClick = () =>{
-        if (!this.state.clicked){
-            this.setState({
-                clicked: true
-            })
-        }
-        
-        this.props.handleClick(this.state.clicked)
-    }
     render() {
         return (
         <div className="card" onClick={this.cardClick}>
